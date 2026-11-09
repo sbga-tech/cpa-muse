@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "plugins": [
+    {
+      "id": "muse",
+      "name": "Muse",
+      "description": "Meta Muse models from a Muse Code subscription, with device login.",
+      "author": "sbga-tech",
+      "repository": "https://github.com/sbga-tech/cpa-muse",
+      "license": "MIT",
+      "tags": ["Executor"],
+      "install": { "type": "github-release" }
+    }
+  ]
+}

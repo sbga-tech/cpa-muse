@@ -1,4 +1,4 @@
-module github.com/DDD0s/cpa-muse
+module github.com/sbga-tech/cpa-muse
 
 go 1.26.10
 

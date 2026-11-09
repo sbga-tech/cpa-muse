@@ -12,10 +12,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/DDD0s/cpa-muse/internal/host"
-	"github.com/DDD0s/cpa-muse/internal/muse"
 	"github.com/router-for-me/CLIProxyAPI/v8/sdk/pluginabi"
 	"github.com/router-for-me/CLIProxyAPI/v8/sdk/pluginapi"
+	"github.com/sbga-tech/cpa-muse/internal/host"
+	"github.com/sbga-tech/cpa-muse/internal/muse"
 )
 
 // Version is stamped at build time with -ldflags "-X .../internal/plugin.Version=...".
@@ -298,8 +298,8 @@ func register(raw []byte) ([]byte, error) {
 		Metadata: pluginapi.Metadata{
 			Name:             "Muse (Meta) provider",
 			Version:          Version,
-			Author:           "DDD0s",
-			GitHubRepository: "https://github.com/DDD0s/cpa-muse",
+			Author:           "sbga-tech",
+			GitHubRepository: "https://github.com/sbga-tech/cpa-muse",
 			ConfigFields:     configFields(),
 		},
 		Capabilities: capabilities{

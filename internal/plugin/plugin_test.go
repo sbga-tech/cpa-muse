@@ -7,9 +7,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DDD0s/cpa-muse/internal/host"
 	"github.com/router-for-me/CLIProxyAPI/v8/sdk/pluginabi"
 	"github.com/router-for-me/CLIProxyAPI/v8/sdk/pluginapi"
+	"github.com/sbga-tech/cpa-muse/internal/host"
 )
 
 func pluginResult[T any](t *testing.T, method string, request any) T {

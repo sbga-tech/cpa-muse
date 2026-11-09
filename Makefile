@@ -3,7 +3,7 @@ VERSION ?= 0.1.0
 BUILD_DIR ?= dist
 GOOS ?= $(shell go env GOOS)
 GOARCH ?= $(shell go env GOARCH)
-GO_LDFLAGS ?= -s -w -X github.com/DDD0s/cpa-muse/internal/plugin.Version=$(VERSION)
+GO_LDFLAGS ?= -s -w -X github.com/sbga-tech/cpa-muse/internal/plugin.Version=$(VERSION)
 
 EXT_linux = so
 EXT_freebsd = so

@@ -55,9 +55,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/DDD0s/cpa-muse/internal/host"
-	"github.com/DDD0s/cpa-muse/internal/plugin"
 	"github.com/router-for-me/CLIProxyAPI/v8/sdk/pluginabi"
+	"github.com/sbga-tech/cpa-muse/internal/host"
+	"github.com/sbga-tech/cpa-muse/internal/plugin"
 )
 
 var hostAPI = struct {
