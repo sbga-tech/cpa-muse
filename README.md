@@ -4,29 +4,36 @@ A [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) (CPA) plugin that 
 
 ## Install
 
-```sh
-make build VERSION=0.1.0    # builds dist/<os>/<arch>/muse.<so|dylib|dll>
-```
+CPA needs a glibc Linux build (including the official Docker image) or macOS; its musl `no-plugin` builds can't load plugins. Release builds exist for linux and darwin, amd64 and arm64.
 
-Copy the library to `<plugins.dir>/<os>/<arch>/` and enable it in CPA's `config.yaml`:
+Add this plugin's registry and the usual settings to CPA's `config.yaml`:
 
 ```yaml
 management:
-  secret-key: "choose-a-management-key"   # required for login
+  secret-key: "choose-a-management-key"   # required for install and login
 
 routing:
   session-affinity: true                  # recommended
 
 plugins:
   enabled: true
-  dir: "plugins"
-  configs:
-    muse:
-      enabled: true
-      priority: 1
+  store-sources:
+    - "https://raw.githubusercontent.com/sbga-tech/cpa-muse/main/registry.json"
 ```
 
-Restart CPA.
+Then install Muse from the plugin store in CPA's management panel, or:
+
+```sh
+curl -s -X POST http://127.0.0.1:8317/v8/management/plugins/store/muse/install \
+  -H "Authorization: Bearer $MANAGEMENT_KEY" -H 'Content-Type: application/json' -d '{}'
+# {"status":"installed","version":"0.1.0","restart_required":false,...}
+```
+
+CPA downloads the latest [release](https://github.com/sbga-tech/cpa-muse/releases), checks its checksum, enables the plugin, and loads it without a restart.
+
+- **Update**: run the same install again (or click update in the panel) after a new release; the new version loads without a restart.
+- **Pin or roll back**: send `{"version":"0.1.0"}` as the body.
+- **Manual install**: unzip a release asset into `plugins/<os>/<arch>/` and enable `plugins.configs.muse.enabled: true`, or build it yourself with `make build`.
 
 ## Log in
 
@@ -98,3 +105,9 @@ All keys are optional and go under `plugins.configs.muse`. Account selection, pr
 ```sh
 make test vet build
 ```
+
+Pushing a `v*` tag runs CI: tests, builds for linux (glibc 2.17) and darwin on amd64 and arm64, a load check in the official CPA image, and a GitHub release with the zips and `checksums.txt` that the plugin store installs.
+
+## License
+
+[MIT](LICENSE)
